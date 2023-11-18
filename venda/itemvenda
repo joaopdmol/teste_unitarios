@@ -1,0 +1,44 @@
+import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
+import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class VendaTest {
+
+    @Test
+    public void testCalculaValorTotalDaVendaSemDesconto() {
+        // Arrange
+        ItemVenda item1 = new ItemVenda("Item 1", 10.0, 2);
+        ItemVenda item2 = new ItemVenda("Item 2", 20.0, 1);
+        List<ItemVenda> itens = new ArrayList<>();
+        itens.add(item1);
+        itens.add(item2);
+        
+        Venda venda = new Venda("Cliente", itens);
+
+        // Act
+        double valorTotal = venda.calculaValorTotal();
+
+        // Assert
+        assertEquals(40.0, valorTotal); // Espera-se que o valor total seja 40.0 (10*2 + 20*1)
+    }
+
+    @Test
+    public void testCalculaValorTotalDaVendaComDesconto() {
+        // Arrange
+        ItemVenda item1 = new ItemVenda("Item 1", 10.0, 2);
+        ItemVenda item2 = new ItemVenda("Item 2", 20.0, 1);
+        List<ItemVenda> itens = new ArrayList<>();
+        itens.add(item1);
+        itens.add(item2);
+
+        Venda venda = new Venda("Cliente", itens);
+        venda.setValorDesconto(5.0); // Aplica um desconto de 5.0
+
+        // Act
+        double valorTotal = venda.calculaValorTotalComDesconto();
+
+        // Assert
+        assertEquals(35.0, valorTotal); // Espera-se que o valor total com desconto seja 35.0 (40.0 - 5.0)
+    }
+}
