@@ -1,0 +1,17 @@
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class ItemVendaTest {
+
+    @Test
+    public void testCalculaValorTotalItemVenda() {
+        // Arrange
+        ItemVenda item = new ItemVenda("Item 1", 10.0, 3);
+
+        // Act
+        double valorTotal = item.calculaValorTotal();
+
+        // Assert
+        assertEquals(30.0, valorTotal); // Espera-se que o valor total do item seja 30.0 (10*3)
+    }
+}
